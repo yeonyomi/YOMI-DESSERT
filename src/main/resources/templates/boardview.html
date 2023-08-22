@@ -2,15 +2,70 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 상세 페이지</title>
+    <title>Dessert board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .actions a {
+            display: inline-block;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        .actions a:hover {
+            background-color: #e0e0e0;
+        }
+         .image {
+            margin-top: 20px;
+        }
+        .image img {
+            max-width: 100%;
+            max-height: 300px; /* 최대 높이 설정 */
+            width: auto; /* 이미지의 가로세로 비율을 유지하며 크기 조절 */
+        }
+    </style>
 </head>
 <body>
-
-<h1 th:text="${board.title}">제목입니다.</h1>
-<p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
-<a th:href="@{${board.filepath}}">사진 보기</a>
-<a th:href="@{/board/delete(id=${board.id})}">글삭제</a>
-<a th:href="@{/board/modify/{id}(id = ${board.id})}">수정</a>
-<a th:href="@{/board/list}">공유목록</a>
+<div class="container">
+    <h1 th:text="${board.title}"></h1>
+    <p th:text="${board.content}"></p>
+    <div class="image">
+        <img th:src="@{${board.filepath}}" alt="로딩중 입니다.잠시만 기다려주세요." />
+    </div>
+    <div class="actions">
+        <a th:href="@{/board/delete(id=${board.id})}">Delete Dessert</a>
+        <a th:href="@{/board/modify/{id}(id = ${board.id})}">Edit Dessert Post</a>
+        <a th:href="@{/board/list}">← DessertList</a>
+    </div>
+</div>
 </body>
 </html>

@@ -10,14 +10,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 public class BoardController {
@@ -34,13 +33,24 @@ public class BoardController {
 
     @PostMapping("/board/writepro")
     public String boardWritePro(Board board, Model model, MultipartFile file) throws Exception {
+        // 파일 업로드 관련 코드
+        String filePath = "C:\\springboot3\\share\\src\\main\\resources\\static\\files"; // 실제 파일이 저장될 경로
+        String fileName = file.getOriginalFilename(); // 업로드된 파일의 이름
+        String fullFilePath = filePath + "/" + fileName;
+
+        // 파일 저장 및 업로드 관련 로직 (이 부분은 필요한 서비스 메서드에서 처리)
+
+        // board 객체에 파일 경로 및 파일명 설정
+        board.setFilepath(fullFilePath);
+        board.setFilename(fileName);
 
         boardService.write(board, file);
 
-        model.addAttribute("message","디저트 공유 성공!");
-        model.addAttribute("searchUrl","/board/list");
+        model.addAttribute("message", "디저트 공유 성공!");
+        model.addAttribute("searchUrl", "/board/list");
         return "message";
     }
+
 
     @GetMapping("/board/list")
     public String boardList(Model model,
@@ -89,19 +99,25 @@ public class BoardController {
         return "boardmodify";
     }
 
+
     @PostMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Board board, MultipartFile file) throws  Exception{
-
-
+    public String boardUpdate(@PathVariable("id") Integer id, Board board, @RequestParam(name = "file", required = false) MultipartFile file) throws Exception {
         Board boardTemp = boardService.boardView(id);
         boardTemp.setTitle(board.getTitle());
         boardTemp.setContent(board.getContent());
-        boardTemp.setFilepath(board.getFilepath());
-        boardTemp.setFilename(board.getFilename());
 
-        boardService.write(boardTemp, file);
+        if (file != null && !file.isEmpty()) {
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            String filePath = "C:\\springboot3\\share\\src\\main\\resources\\static\\files"; // 실제 파일이 저장될 경로
+            file.transferTo(new File(filePath, fileName));
 
+            boardTemp.setFilepath("/files/" + fileName);
+            boardTemp.setFilename(fileName);
+        }
+
+        boardService.update(boardTemp);
 
         return "redirect:/board/list";
     }
+
 }
