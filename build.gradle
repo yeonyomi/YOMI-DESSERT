@@ -26,7 +26,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.3'
+
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+
+	// 카카오 SDK 의존성 추가
+	implementation group: 'com.kakao.sdk', name: 'kakao-sdk', version: '1.15.1' // 적절한 버전 사용
+
+
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'

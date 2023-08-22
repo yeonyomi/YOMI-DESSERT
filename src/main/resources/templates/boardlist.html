@@ -1,22 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dessert LiST</title>
-    <link rel="icon" type="image/x-icon" href="assets/makalong.png" />
+
+    <link rel="icon" type="image/x-icon" href="assets/makalong.png"/>
     <style>
-        .header {
-       background-color: #ff69b4;
-       color: white;
-       padding: 70px 0;
+        @import url('https://fonts.googleapis.com/css2?family=Diphylleia&family=Tilt+Prism&display=swap');
+    </style>
+
+    <style>
+    .header {
+       color: pink;
+       padding: 30px 0;
        text-align: center;
        font-size: 40px;
        font-weight: bold;
+    font-family: 'Diphylleia', serif;
+   }
+   .footer {
+       color: pink;
+       padding: 30px 0;
+       text-align: center;
+       font-size: 40px;
+       font-weight: bold;
+    font-family: 'Diphylleia', serif;
    }
 
+   .welcome-text {
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+ font-family: 'Diphylleia', serif;
+}
+/* CSS 애니메이션 키프레임 정의 */
+@keyframes glitter {
+    0% {
+        color: pink;
+    }
+    50% {
+        color: silver;
+    }
+    100% {
+        color: magenta;
+    }
+}
+/* 반짝이는 효과를 적용할 요소에 클래스 추가 */
+.glitter-text {
+    animation: glitter 2s infinite; /* 애니메이션 이름, 지속 시간, 무한 반복 설정 */
+}
+
+.layout.new-post-link{
+font-size: 30px;
+    font-weight: bold;
+    color: #ff69b4;
+    text-align: center;
+    }
+
+
        body {
-           font-family: Arial, sans-serif;
-           background-color: pink;
+         font-family: 'Diphylleia', serif;
+           background-image: url('/assets/img/backgroundMAIN.jpg');
+           background-size: cover;
            margin: 0;
            padding: 0;
        }
@@ -25,9 +70,9 @@
            max-width: 800px;
            margin: 0 auto;
            padding: 20px;
-           background-color: white;
+           background-color: pink;
            border-radius: 5px;
-           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+           0px 2px 4px rgba(0, 0, 0, 0.1);
        }
 
        h1 {
@@ -52,6 +97,7 @@
            padding: 8px;
            border: 1px solid #ccc;
            border-radius: 3px;
+           font-family: 'Diphylleia', serif;
        }
 
        .search-button {
@@ -88,8 +134,8 @@
        }
 
        .thumbnail {
-   width: 100px;
-   height: auto;
+   width: 200px;
+   height: 200px;
    cursor: pointer;
    transition: transform 0.3s; /* 확대 효과의 전환 시간 설정 */
 }
@@ -133,30 +179,41 @@
 
 
 <body>
+<div class="header glitter-text">Share-Dessert!
+        <br>
+  <img src="\assets\img\mainyeon.png" width="auto" height="300px"/><br>
+        <p class="welcome-text glitter-text" >
+            "당신의 디저트를 공유해 주세요!-!"<br>
+            "あなたのデザートを共有してください!-!"<br>
+            "share your dessert!-!"<br>
+            "分享你的甜点!-!"
+        </p>
+    </div>
 
-    <div class="header">Share-Dessert!</div>
-    <div class="header"><img src="assets/img/Dessertmain.png" /></div>
+
+
+
+
+
 
     <div class="layout">
-    <div><a class="new-post-link" th:href="@{/board/write}">Let's share desserts!-!</a></div>
+        <div><a class="new-post-link" th:href="@{/board/write}" style="color: white;">Let's share<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check" viewBox="0 0 16 16">
+            <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"/>
+            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
+        </svg></a></div>
+        <div><a class="new-post-link" th:href="@{/board/write}" style="color: white;">Let's join/longin<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check" viewBox="0 0 16 16">
+            <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"/>
+            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
+        </svg></a></div>
 
-    <form class="search-form" th:action="@{/board/list}" method="get">
-        <input class="search-input" type="text" name="searchKeyword" placeholder="Dessert Search">
-        <button class="search-button" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-apple" viewBox="0 0 16 16">
+        <form class="search-form" th:action="@{/board/list}" method="get">
+            <input class="search-input" type="text" name="searchKeyword" placeholder="Dessert Search">
+            <button class="search-button" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-apple" viewBox="0 0 16 16">
             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/>
             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/>
-        </svg></button>
-    </form>
-    <div class="pagination">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-        </svg><th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-            <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
-            <strong th:if="${page == nowPage}" th:text="${page}"></strong>
-        </th:block><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-    </svg>
-    </div>
+            </svg></button>
+        </form>
+<br>
     <table>
         <thead>
         <tr>
@@ -165,18 +222,49 @@
             <th>DessertPhoto</th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="board : ${list}">
-            <td th:text="${board.id}"></td>
+            <td th:text="${board.id}" style="color: white;"></td>
             <td>
-                <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
+                <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}" style="color: white;"></a>
             </td>
             <td>
                 <a th:if="${board.filepath}" href="#" th:attr="data-image=${board.filepath}" class="image-link">
-                    <img th:src="${board.filepath}" alt="게시글 이미지" class="thumbnail">
+                    <img th:src="${board.filepath}" alt="잠시로딩중입니다." class="thumbnail">
                 </a>
             </td>
         </tr>
         </tbody>
+
     </table>
+
+        <div class="pagination" style="text-align: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
+                <strong th:if="${page == nowPage}" th:text="${page}"></strong></th:block>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+        </div>
 </div>
+
+
+
+    <div class="footer">
+        <p class="welcome-text glitter-text">
+            "안녕하세요!-! 디저트를 사랑하는 개발자가 만든 사이트입니다!<br>
+             디저트마다 고유 유래가 존재 한다는 사실을 알고 계신가요?<br>
+            유래의 정보는 저희 사이트 하단에 담겨 있습니다!<br>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-paper-heart" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1.133l.941.502A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765L2 3.133V2Zm0 2.267-.47.25A1 1 0 0 0 1 5.4v.817l1 .6v-2.55Zm1 3.15 3.75 2.25L8 8.917l1.25.75L13 7.417V2a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v5.417Zm11-.6 1-.6V5.4a1 1 0 0 0-.53-.882L14 4.267v2.55ZM8 2.982C9.664 1.309 13.825 4.236 8 8 2.175 4.236 6.336 1.31 8 2.982Zm7 4.401-4.778 2.867L15 13.117V7.383Zm-.035 6.88L8 10.082l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738ZM1 13.116l4.778-2.867L1 7.383v5.734Z"/>
+            </svg><br>
+            여러분의 추억이 담긴 디저트를 공유해 주셔서 감사합니다!<br>
+            우리 모두 디저트를 나누는 문화를 만들어 가 봐요!"<br>
+            (정보의 다양성을 위헤 삭제 및 수정은 관리자만 가능합니다)
+        </p>
+    </div>
+
