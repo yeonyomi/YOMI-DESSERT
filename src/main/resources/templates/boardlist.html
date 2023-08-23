@@ -33,6 +33,8 @@
     text-align: center;
  font-family: 'Diphylleia', serif;
 }
+
+
 /* CSS 애니메이션 키프레임 정의 */
 @keyframes glitter {
     0% {
@@ -42,7 +44,7 @@
         color: silver;
     }
     100% {
-        color: magenta;
+        color: white;
     }
 }
 /* 반짝이는 효과를 적용할 요소에 클래스 추가 */
@@ -178,7 +180,10 @@ font-size: 30px;
 
 
 
+
+
 <body>
+
 <div class="header glitter-text">Share-Dessert!
         <br>
   <img src="\assets\img\mainyeon.png" width="auto" height="300px"/><br>
@@ -197,14 +202,14 @@ font-size: 30px;
 
 
     <div class="layout">
-        <div><a class="new-post-link" th:href="@{/board/write}" style="color: white;">Let's share<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check" viewBox="0 0 16 16">
+
+        <div><a class="new-post-link" th:href="@{/board/write}" style="color: white;">
+            Let's share<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check" viewBox="0 0 16 16">
             <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"/>
             <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
         </svg></a></div>
-        <div><a class="new-post-link" th:href="@{/board/write}" style="color: white;">Let's join/longin<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check" viewBox="0 0 16 16">
-            <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372l2.8-7Zm-2.54 1.183L5.93 9.363 1.591 6.602l11.833-4.733Z"/>
-            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
-        </svg></a></div>
+
+
 
         <form class="search-form" th:action="@{/board/list}" method="get">
             <input class="search-input" type="text" name="searchKeyword" placeholder="Dessert Search">
@@ -225,9 +230,9 @@ font-size: 30px;
 
         <tbody>
         <tr th:each="board : ${list}">
-            <td th:text="${board.id}" style="color: white;"></td>
+            <td th:text="${board.id}" style="color: gray;"></td>
             <td>
-                <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}" style="color: white;"></a>
+                <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}" style="color: gray;"></a>
             </td>
             <td>
                 <a th:if="${board.filepath}" href="#" th:attr="data-image=${board.filepath}" class="image-link">
@@ -243,7 +248,7 @@ font-size: 30px;
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
             </svg>
-            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}" style="color: gray;">
                 <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
                 <strong th:if="${page == nowPage}" th:text="${page}"></strong></th:block>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
